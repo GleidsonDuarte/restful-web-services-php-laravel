@@ -16,5 +16,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 */
 
-$this->post('products/search', 'API\ProductController@search');
-$this->resource('products', 'API\ProductController', ['except' => ['create', 'edit']]);
+$this->post('auth', 'Auth\AuthenticateController@authenticate');
+$this->post('auth-refresh', 'Auth\AuthenticateController@refreshToken');
+
+$this->group(['middleware' => 'jwt.auth'], function() {
+	$this->get('products/search', 'API\ProductController@search');
+	$this->resource('products', 'API\ProductController', ['except' => ['create', 'edit']]);
+});

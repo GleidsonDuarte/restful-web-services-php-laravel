@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JQuery Ajax</title>
+		<meta charset='utf-8'>
+	</head>
+	<body>
+		<button class='btn-request'>Enviar Requisição</button>
+		
+		<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+		<script>
+			$(function() {
+				var token = 'Cole aqui um token gerado pela API para autenticação ao consumir uma rota por esse AJAX!';
+				$('.btn-request').click(function() {
+					$.ajax({
+						url: 'http://localhost:8000/api/products',
+						method: 'GET',
+						data: {'token' : token}
+					}).done(function(data) {
+						alert('Sucess...');
+						console.log(data);
+					}).fail(function() {
+						alert('Fail...');
+					});
+				});
+			});
+		</script>
+	</body>
+</html>
