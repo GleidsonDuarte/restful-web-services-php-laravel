@@ -13,3 +13,5 @@ yarn-error.log
 
 
 /laravel-api/vendor
+
+/php-client/vendor
